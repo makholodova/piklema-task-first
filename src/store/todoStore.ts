@@ -21,7 +21,7 @@ export const useTodoStore = defineStore('todo', {
 				}
 			}
 		},
-		saveToLocalStorage() {
+		saveToLocalStorage(): void {
 			localStorage.setItem('todos', JSON.stringify(this.todos));
 		},
 		addTodo(text: string): void {
@@ -33,16 +33,16 @@ export const useTodoStore = defineStore('todo', {
 			this.todos.push(newTodo);
 			this.saveToLocalStorage();
 		},
-		editTodo(id: number, newtext: string): void {
+		editTodo(id: number, newText: string): void {
 			const todo = this.todos.find(p => p.id === id);
-			if (todo) todo.text = newtext;
+			if (todo) todo.text = newText;
 			this.saveToLocalStorage();
 		},
 		deleteTodo(id: number): void {
 			this.todos = this.todos.filter(p => p.id !== id);
 			this.saveToLocalStorage();
 		},
-		toggleTodo(id: number):void{
+		toggleTodo(id: number): void {
 			const todo = this.todos.find(p => p.id === id);
 			if (todo) todo.completed = !todo.completed;
 			this.saveToLocalStorage();
